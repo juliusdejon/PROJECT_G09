@@ -6,22 +6,6 @@ body {
     font-size: 14px;
 }
   
-.logo {
-    width: 140px;
-}
-  
-header > nav {
-    background-color: #fff;
-    border-bottom: 1px solid #F4F4F4;
-    padding: 2px;
-}
-  
-header > nav > ul {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-}
-  
 .title-container {
     font-family: 'Dela Gothic One', sans-serif;
     font-size: 80px;
