@@ -80,48 +80,6 @@ app.get("/", async (req, res) => {
 
 app.get("/create-item", async (req, res) => {
   const item =
-    // {
-    //   name: "Grilled Chicken",
-    //   image: "https://images.unsplash.com/photo-1579888944884-c7fc5a553848?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3087&q=80",
-    //   description: "Delight in the perfection of a grilled chicken, its succlent tenderness and creating a memorable culinary experience",
-    //   price: 28.99,
-    // }
-    // {
-    //   name: "Kimchi Fried Rice",
-    //   image: "https://images.unsplash.com/photo-1600688654899-379ec76aca42?ixlib=rb",
-    //   description: "Savor the explosive harmony of flavors in kimchi freid rice",
-    //   price: 21.99
-    // }
-    // {
-    //   name: "French Fries",
-    //   image: "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb",
-    //   description: "Indulge in the crispy golden perfection of French fries",
-    //   price: 8.99
-    // }
-    // {
-    //   name: "Special Taco",
-    //   image: "https://images.unsplash.com/photo-1604467715878-83e57e8bc129?ixlib=rb",
-    //   description: "2 pieces of special taco with fresh vegatables",
-    //   price: 12.99
-    // }
-    // {
-    //   name: "Cheese burger",
-    //   image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb",
-    //   description: "Dive into the ultimate indulgence with a double meat cheeseburger",
-    //   price: 18.99
-    // }
-    // {
-    //   name: "Bibimbap",
-    //   image: "https://images.unsplash.com/photo-1639321905636-c1c0e71fb467?ixlib=rb",
-    //   description: "Bibimbap, a harmonious blend of meticulously seasoned vegatables, savory meat, and a perfectly fried egg",
-    //   price: 21.99
-    // }
-    // {
-    //   name: "Bacon and eggs",
-    //   image: "https://images.unsplash.com/photo-1606851094291-6efae152bb87?ixlib=rb",
-    //   description: "Indulge in the classic comfort of our Bacon and Eggs breakfast",
-    //   price: 11.99
-    // }
     {
       name: "Peperoni pizza",
       image:
@@ -169,7 +127,7 @@ app.post("/orderForm", (req, res) => {
 });
 
 app.post("/orderStatus", (req, res)=> {
-  res.render("orderStatus", {layout: false}); 
+  res.render("restaurant/orderStatus", {layout: false}); 
 });
 
 app.get("/create-order", async (req, res) => {
