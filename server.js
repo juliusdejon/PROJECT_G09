@@ -70,7 +70,7 @@ app.get("/", async (req, res) => {
     const result = await Item.find().lean().exec();
 
     res.render("restaurant/restaurant", {
-      layout: false,
+      layout: "navbar-layout",
       items: result,
     });
   } catch (error) {
@@ -227,13 +227,13 @@ app.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find().sort("-orderDate").lean().exec();
     const orderList = await getOrders(orders);
-    res.render("orders/orders", {
-      layout: false,
+    return res.render("orders/orders", {
+      layout: "navbar-layout",
       orders: orderList,
     });
   } catch (error) {
-    res.render("orders/orders", {
-      layout: false,
+    return res.render("orders/orders", {
+      layout: "navbar-layout",
       orders: [],
       errorMsg: `Error: Cannot list Orders at the moment - ${error}`,
     });
@@ -251,12 +251,12 @@ app.post("/orders", async (req, res) => {
         .exec();
       const orderList = await getOrders(orders);
       return res.render("orders/orders", {
-        layout: false,
+        layout: "navbar-layout",
         orders: orderList,
       });
     } catch (error) {
       return res.render("orders/orders", {
-        layout: false,
+        layout: "navbar-layout",
         orders: [],
       });
     }
