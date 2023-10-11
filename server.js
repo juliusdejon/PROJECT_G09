@@ -119,7 +119,7 @@ app.post("/orderForm", (req, res) => {
   }
 
   res.render("restaurant/orderForm", {
-    layout: false,
+    layout: "navbar-layout",
     orderItems: orderItems,
     subtotal: subtotal,
   });
