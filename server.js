@@ -151,7 +151,7 @@ app.post("/create-order", async (req, res) => {
   const order = {
     customerName: customerName,
     deliveryAddress: deliveryAddress,
-    orderCode: "A" + ((Math.random() * 1000000) + 1), //TODO: change this orderCode
+    orderCode: "A" + parseInt(((Math.random() * 1000000) + 1)), //TODO: change this orderCode
     orderItems: orderItems,
     orderTotal: orderTotal,
 
