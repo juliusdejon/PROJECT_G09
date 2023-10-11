@@ -79,7 +79,6 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/create-item", async (req, res) => {
-
   const item = {
     name: "Peperoni pizza",
     image:
@@ -126,8 +125,8 @@ app.post("/orderForm", (req, res) => {
   });
 });
 
-app.post("/orderStatus", (req, res)=> {
-  res.render("restaurant/orderStatus", {layout: "navbar-layout"}); 
+app.post("/orderStatus", (req, res) => {
+  res.render("restaurant/orderStatus", { layout: "navbar-layout" });
 });
 
 app.get("/create-order", async (req, res) => {
@@ -228,13 +227,13 @@ app.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find().sort("-orderDate").lean().exec();
     const orderList = await getOrders(orders);
-    res.render("orders", {
-      layout: false,
+    return res.render("orders/orders", {
+      layout: "navbar-layout",
       orders: orderList,
     });
   } catch (error) {
-    res.render("orders", {
-      layout: false,
+    return res.render("orders/orders", {
+      layout: "navbar-layout",
       orders: [],
       errorMsg: `Error: Cannot list Orders at the moment - ${error}`,
     });
