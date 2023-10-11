@@ -126,7 +126,7 @@ app.post("/orderForm", (req, res) => {
 });
 
 app.post("/orderStatus", (req, res) => {
-  res.render("orderStatus", { layout: false });
+  res.render("restaurant/orderStatus", { layout: false });
 });
 
 app.get("/create-order", async (req, res) => {
