@@ -139,11 +139,17 @@ app.post("/create-order", async (req, res) => {
   const orderTotal = req.body.orderTotal;
   const orderItems = req.body.orderItems;
 
-  // TODO: Add validation when empty
+  // // TODO: Add validation when empty
+  // if (customerName === undefined || customerName === null || customerName === "" 
+  //      || deliveryAddress === undefined || deliveryAddress === null || deliveryAddress === "" 
+  //      || orderTotal === undefined || orderTotal === null || orderTotal === ""
+  //      || orderItems === undefined || orderItems === null || orderItems === "") {
+  //         return res.render("restaurant/orderForm", {layout: "navbar-layout", errMsg: "All fields must be filled"})
+  //      }
   const order = {
     customerName: customerName,
     deliveryAddress: deliveryAddress,
-    orderCode: Math.random(), //TODO: change this orderCode
+    orderCode: "A" + ((Math.random() * 1000000) + 1), //TODO: change this orderCode
     orderItems: orderItems,
     orderTotal: orderTotal,
 

@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const taxElement = document.getElementById("tax");
   const totalInput = document.getElementById("orderTotal");
 
+
   const taxRate = 0.13;
   const serviceFee = 2;
   let selectedTipPercentage = 0;
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedTipPercentage = isSelected
         ? 0
         : parseFloat(button.getAttribute("data-tip"));
-      console.log(selectedTipPercentage);
+   
       const tax = (subtotalValue + deliveryFee + serviceFee) * 0.13;
       const total =
         (subtotalValue + deliveryFee + tax) * (selectedTipPercentage + 1);
@@ -51,6 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
     (subtotalValue + deliveryFee) *
     1.13
   ).toFixed(2)}`;
-  // TODO : get also the tip
-  totalInput.value = ((subtotalValue + deliveryFee) * 1.13).toFixed(2);
+
+
+  totalInput.value = (((subtotalValue + deliveryFee) * 1.13) * (selectedTipPercentage + 1)).toFixed(2);
+  
 });
