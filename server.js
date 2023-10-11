@@ -79,6 +79,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/create-item", async (req, res) => {
+<<<<<<< HEAD
   const item =
     {
       name: "Peperoni pizza",
@@ -87,6 +88,15 @@ app.get("/create-item", async (req, res) => {
       description: "Delight in the savory perfection of our Pepperoni Pizza",
       price: 24.99,
     };
+=======
+  const item = {
+    name: "Peperoni pizza",
+    image:
+      "https://images.unsplash.com/photo-1525518392674-39ba1fca2ec2?ixlib=rb",
+    description: "Delight in the savory perfection of our Pepperoni Pizza",
+    price: 24.99,
+  };
+>>>>>>> 7acf0bdaa2394de25d0733518057e4064856089b
   try {
     const result = await new Item(item).save();
 
