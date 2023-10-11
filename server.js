@@ -138,10 +138,12 @@ app.post("/create-order", async (req, res) => {
   const deliveryAddress = req.body.deliveryAddress;
   const orderTotal = req.body.orderTotal;
   const orderItems = req.body.orderItems;
+
+  // TODO: Add validation when empty
   const order = {
     customerName: customerName,
     deliveryAddress: deliveryAddress,
-    orderCode: Math.random(),
+    orderCode: Math.random(), //TODO: change this orderCode
     orderItems: orderItems,
     orderTotal: orderTotal,
 

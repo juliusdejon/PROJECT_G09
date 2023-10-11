@@ -51,5 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
     (subtotalValue + deliveryFee) *
     1.13
   ).toFixed(2)}`;
+  // TODO : get also the tip
   totalInput.value = ((subtotalValue + deliveryFee) * 1.13).toFixed(2);
 });
