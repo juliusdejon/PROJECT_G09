@@ -149,7 +149,7 @@ app.post("/create-order", async (req, res) => {
     orderItems: orderItems,
     orderTotal: orderTotal,
 
-    orderStatus: "Available For Delivery",
+    orderStatus: "Received",
     proofOfDelivery: "",
     driverEmailId: "",
   };
