@@ -133,6 +133,34 @@ app.get("/order-status", async (req, res) => {
   });
 });
 
+app.post("/order-status", async (req, res) => {
+  const orderId = req.body.orderId;
+  try {
+    const order = await Order.findOne({ orderCode: orderId });
+    console.log(order);
+    const isReceived = order.orderStatus === "Received";
+    const isAvailableForDelivery =
+      order.orderStatus === "Available For Delivery";
+    const isInTransit = order.orderStatus === "In Transit";
+    const isDelivered = order.orderStatus === "Delivered";
+
+    res.render("restaurant/orderStatus", {
+      layout: "navbar-layout",
+      order: order,
+      orderCode: order.orderCode,
+      isReceived,
+      isAvailableForDelivery,
+      isInTransit,
+      isDelivered,
+    });
+  } catch (error) {
+    res.render("restaurant/orderStatus", {
+      layout: "navbar-layout",
+      errMsg: "Order is not found. Please Input Again",
+    });
+  }
+});
+
 app.post("/create-order", async (req, res) => {
   console.log(req.body);
   const customerName = req.body.customerName;
