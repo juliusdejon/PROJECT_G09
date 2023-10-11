@@ -283,10 +283,16 @@ const getOrders = async (orders) => {
 app.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find().sort("-orderDate").lean().exec();
+    const activeOrders = await Order.find({ orderStatus: "Received" })
+      .sort("-orderDate")
+      .lean()
+      .exec();
     const orderList = await getOrders(orders);
+    const activeOrderList = await getOrders(activeOrders);
     res.render("orders/orders", {
       layout: "navbar-layout",
       orders: orderList,
+      activeOrders: activeOrderList,
     });
   } catch (error) {
     res.render("orders/orders", {
