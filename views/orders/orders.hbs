@@ -1,0 +1,93 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="/orders.css" rel="stylesheet" />
+  </head>
+  <body>
+      <header>
+        <nav>
+          <ul>
+            <li><img class="logo" src="/logo/hjm-logo.png" /></li>
+          </ul>
+        </nav>
+      </header>
+    <main>
+      <h2>Orders</h2>
+        <form action="/orders" method="post">
+          <input
+            class="input-search"
+            name="customerName"
+            type="text"
+            placeholder="Search"
+          />
+          <button class="btn-search" type="submit">
+            Search
+            </button>
+        </form>
+      <section>
+        <table>
+          <th>Order Id</th>
+          <th>Customer</th>
+          <th>Address</th>
+          <th># of Items</th>
+          <th>Cost</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Driver Details</th>
+          <th>Action</th>
+        {{#each orders}}
+          <tr>
+            <td>{{this.orderCode}}</td>
+            <td>{{this.customerName}}</td>
+            <td>{{this.deliveryAddress}}</td>
+            <td>{{this.orderItems.length}}</td>
+            <td>${{this.orderTotal}}</td>
+            <td>{{this.orderDate}}</td>
+            <td><span class="span-status"
+               style="background: {{this.orderStatusColor}}">
+              </span>
+              <span>
+                {{this.orderStatus}}
+              </span>
+              {{#if this.proofOfDelivery}}
+              <p>Proof of Delivery: {{this.proofOfDelivery}}</p>
+              {{/if}}
+            </td>
+            <td>
+              {{#if this.driverEmailId}}
+              <p>Name: {{this.driverName}}
+              <p>License Plate: {{this.driverLicensePlate}}</p>
+              {{else}}
+              <p>-</p>
+              {{/if}}
+            </td>
+            <td>
+              <form action="/orders/update/{{this.orderCode}}/Available For Delivery" method="post">
+              {{#if this.isReceived}}
+                <button
+                 class="btn-deliver"
+                 type="submit">
+                 Send to delivery
+                </button>
+              {{else}}
+                <button
+                  type="button"
+                 class="btn-deliver btn-deliver-disabled"
+                 >
+                 Send to delivery
+                </button>
+              {{/if}}
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

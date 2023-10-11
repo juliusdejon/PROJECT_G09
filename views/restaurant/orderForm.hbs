@@ -1,0 +1,48 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Item</title>
+    <link rel="stylesheet" href="/orderForm.css" />
+    <script src="/js/orderForm.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><img class="logo" src="/logo/hjm-logo.png" /></li>
+        </ul>
+      </nav>
+    </header>
+    <h2></h2>
+    <div class="align-container">
+      <div class="item-container">
+        <h2>Order Summary</h2>
+        {{#each orderItems}}
+          <div>
+            <p>{{name}}: ${{price}}</p>
+          </div>
+        {{/each}}
+        <h3>Order total</h3>
+        <p id="subtotal">Subtotal: ${{subtotal}}</p>
+        <p>Delivery Fee: $0.99</p>
+        <p id="tax"></p>
+        <hr />
+        <p>Add a tip</p>
+        <div>
+          <button class="tip-button" data-tip="0.15">15%</button>
+          <button class="tip-button" data-tip="0.18">18%</button>
+          <button class="tip-button" data-tip="0.20">20%</button>
+          <button class="tip-button" data-tip="0.25">25%</button>
+        </div>
+        <hr />
+        <h2 id="total"></h2>
+        <button id="place-order-button">Place order</button>
+      </div>
+    </div>
+
+  </body>
+
+</html>

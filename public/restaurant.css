@@ -1,0 +1,174 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+  
+.logo {
+    width: 140px;
+}
+  
+header > nav {
+    background-color: #fff;
+    border-bottom: 1px solid #F4F4F4;
+    padding: 2px;
+}
+  
+header > nav > ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+  
+.title-container {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 80px;
+}
+
+.banner-container {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),url("./img/cheese_burger.jpg");
+    background-position: center;
+    background-size: cover; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),url("./img/table_food.jpg");
+}
+
+#menu-title {
+    display: flex;
+    justify-content: center;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 40px;
+    color: white; 
+    padding-top: 5%;
+}
+.menu-container  {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 5%;
+    color: white;
+}
+
+
+.button-container {
+    margin-top: 10%;
+}
+
+#order-now-button {
+    padding: 15px 30px;
+    border-radius: 30px;
+}
+
+.image-button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    cursor: pointer; 
+}
+
+.item-image {
+    width: 300px;
+    height: 200px;
+    border-radius: 15px;
+}
+
+.modal-item-image {
+    width: 350px;
+    height: 200px;
+    border-radius: 15px;
+}
+.text-container {
+    text-align: center;
+}
+
+.add-item-button {
+    padding: 10px 100px; 
+    background-color: black;
+    border-radius: 10px; 
+    border: none;
+    color: white;
+}
+
+.add-item-button:hover {
+    background-color: #333333;
+    cursor: pointer;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0; 
+    height: 100%;
+    width: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.1);
+}
+
+.modal-content {
+ 
+    gap: 20px;
+    background-color: #f4f4f4;
+    color: black; 
+    margin: 15% auto; 
+    padding: 20px;
+    width: 40%; 
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17); 
+}
+
+.closeBtn {
+    color: #ccc;
+    float: right; 
+    font-size: 30px; 
+}
+
+.closeBtn:hover, .closeBtn:focus {
+    color: #000;
+    text-decoration: none; 
+    cursor: pointer; 
+}
+
+.basket {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.basket:hover {
+    background-color: #2980b9; 
+}
+
+.basket-icon {
+    font-size: 24px; 
+}
+
+.basket-count {
+    font-size: 14px;
+    margin-top: 4px; 
+}

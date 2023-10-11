@@ -1,0 +1,89 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/restaurant.css" rel="stylesheet" />
+    <script src="/js/restaurant.js" defer></script>
+  </head>
+
+  <body>
+
+    <main>
+      <section class="banner-container">
+        <div class="title-container">
+          HJM Restaurant
+        </div>
+        <div>
+          <h1>160 Kendal Avenue</h1>
+        </div>
+        <div>
+          <h2>Opening hours: 9:00AM - 5:00PM</h2>
+        </div>
+        <div class="button-container">
+          <button id="order-now-button">ORDER NOW</button>
+        </div>
+      </section>
+      <section>
+
+        <div class="container">
+          <span id="menu-title">HJM MENU</span>
+          <div class="menu-container">
+
+            {{#each items}}
+              <div class="item-container">
+
+                <button
+                  class="image-button"
+                  data-name="{{name}}"
+                  data-image="{{image}}"
+                  data-description="{{description}}"
+                  data-price="{{price}}"
+                >
+                  <img src={{image}} alt="item image" class="item-image" />
+                </button>
+                <p class="text-container">{{name}} &nbsp; Price: {{price}}</p>
+
+                <div id="simpleModal" class="modal">
+                  <div class="modal-content">
+                    <span class="closeBtn">&times;</span>
+                    <img src="" alt="item image" class="modal-item-image" />
+                    <h3 class="modal-name"></h3>
+                    <p class="modal-description"></p>
+                    <button
+                      class="add-item-button"
+                      data-name="{{name}}"
+                      data-price="{{price}}"
+                    >Add 1 to order <span class="modal-price"></span></button>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+
+          </div>
+          <form action="/orderForm" method="POST">
+            <input type="hidden" name="items" value="" id="orderItems" />
+            <button id="shopping-basket" class="basket">
+              <span class="basket-icon">&#128722;</span>
+              <span class="basket-count">0</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+  </body>
+
+</html>
