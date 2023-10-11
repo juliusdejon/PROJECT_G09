@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateBasketCount = () => {
     document.querySelector(".basket-count").textContent = basketCount;
+    document.getElementById("orderItemsSize").value = basketCount;
   };
 
   const addItemToBasket = () => {
