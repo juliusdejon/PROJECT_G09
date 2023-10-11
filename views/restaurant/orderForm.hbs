@@ -17,9 +17,9 @@
           <label for="customerName">Customer Name</label>
           <input type="text" name="customerName" />
           <label for="deliveryAddress">Delivery Address</label>
-          <textarea name="deliveryAddress"></textarea>
-          <input type="text" name="orderTotal" id="orderTotal" />
-
+          <textarea name="deliveryAddress"></textarea>   
+          <input type="hidden" name="orderTotal" id="orderTotal" />
+          <input type="hidden" name="orderItems" value={{{orderItemsSize}}} />
           <h2>Order Summary</h2>
           {{#each orderItems}}
             <div>

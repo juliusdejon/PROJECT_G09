@@ -112,6 +112,7 @@ app.get("/remove-item/:itemId", async (req, res) => {
 
 app.post("/orderForm", (req, res) => {
   const orderItems = req.body.items ? JSON.parse(req.body.items) : [];
+  const orderItemsSize = req.body.orderItemsSize;
   let subtotal = 0;
 
   for (let i = 0; i < orderItems.length; i++) {
@@ -121,6 +122,7 @@ app.post("/orderForm", (req, res) => {
   res.render("restaurant/orderForm", {
     layout: "navbar-layout",
     orderItems: orderItems,
+    orderItemsSize: orderItemsSize,
     subtotal: subtotal,
   });
 });
@@ -153,7 +155,7 @@ app.post("/create-order", async (req, res) => {
     orderItems: orderItems,
     orderTotal: orderTotal,
 
-    orderStatus: "Available For Delivery",
+    orderStatus: "Received",
     proofOfDelivery: "",
     driverEmailId: "",
   };
