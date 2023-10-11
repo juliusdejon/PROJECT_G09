@@ -15,11 +15,12 @@
           <h3 style="color: red; margin-bottom: 10px;">{{errMsg}}</h3>
           <h2>Customer Information</h2>
           <label for="customerName">Customer Name</label>
-          <input type="text" name="customerName" />
+          <input type="text" name="customerName" required/>
           <label for="deliveryAddress">Delivery Address</label>
-          <textarea name="deliveryAddress"></textarea>   
-          <input type="hidden" name="orderTotal" id="orderTotal" />
-          <input type="hidden" name="orderItems" value={{{orderItemsSize}}} />
+          <textarea name="deliveryAddress" required></textarea>   
+          <input type="hidden" name="orderTotal" value={{{total}}} />
+          <input type="hidden" name="orderItems" value={{{orderItems}}} />
+        
           <h2>Order Summary</h2>
           {{#each orderItems}}
             <div>
@@ -28,18 +29,18 @@
           {{/each}}
           <h3>Order total</h3>
           <p id="subtotal">Subtotal: ${{subtotal}}</p>
-          <p>Delivery Fee: $0.99</p>
-          <p id="tax"></p>
-          <hr />
-          <p>Add a tip</p>
+          <p>Delivery Fee: ${{deliveryFee}}</p>
+          {{!-- <p>${{tax}}</p>
+          <hr /> --}}
+          {{!-- <p>Add a tip</p>
           <div>
             <button class="tip-button" data-tip="0.15">15%</button>
             <button class="tip-button" data-tip="0.18">18%</button>
             <button class="tip-button" data-tip="0.20">20%</button>
             <button class="tip-button" data-tip="0.25">25%</button>
-          </div>
-          <hr />
-          <h2 id="total"></h2>
+          </div> --}}
+          <hr>
+          <h2>Total: {{total}}</h2>
 
           <button type="submit" id="place-order-button">Place order</button>
         </div>

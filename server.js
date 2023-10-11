@@ -61,6 +61,7 @@ const Item = mongoose.model("item_collection", ItemSchema);
 const Order = mongoose.model("order_collection", OrderSchema);
 const Driver = mongoose.model("driver", DriverSchema);
 
+let cart = [];
 /*
   restaurant endpoints
 */
@@ -114,16 +115,27 @@ app.post("/orderForm", (req, res) => {
   const orderItems = req.body.items ? JSON.parse(req.body.items) : [];
   const orderItemsSize = req.body.orderItemsSize;
   let subtotal = 0;
-
+  const deliveryFee = 0.99;
+  
   for (let i = 0; i < orderItems.length; i++) {
     subtotal += parseFloat(orderItems[i].price);
   }
 
+  const tax = ((subtotal + deliveryFee) * 0.13).toFixed(2); 
+  const total = parseFloat((subtotal + deliveryFee + tax)).toFixed(2);
+  
+  for (let i = 0; i < orderItems.length; i++) {
+    cart.push(orderItems[i]);
+  }
+  
   res.render("restaurant/orderForm", {
     layout: "navbar-layout",
     orderItems: orderItems,
     orderItemsSize: orderItemsSize,
     subtotal: subtotal,
+    deliveryFee: deliveryFee,
+    tax: tax,
+    total: total
   });
 });
 
@@ -135,26 +147,28 @@ app.post("/orderStatus", async (req, res) => {
 });
 
 app.post("/create-order", async (req, res) => {
-  console.log(req.body);
+  
   const customerName = req.body.customerName;
   const deliveryAddress = req.body.deliveryAddress;
   const orderTotal = req.body.orderTotal;
-  const orderItems = req.body.orderItems;
+  const orderItems = req.body.orderItems; 
 
-  // // TODO: Add validation when empty
+
+  // TODO: Add validation when empty
   // if (customerName === undefined || customerName === null || customerName === "" 
   //      || deliveryAddress === undefined || deliveryAddress === null || deliveryAddress === "" 
   //      || orderTotal === undefined || orderTotal === null || orderTotal === ""
   //      || orderItems === undefined || orderItems === null || orderItems === "") {
+  //         console.log(orderItems);
   //         return res.render("restaurant/orderForm", {layout: "navbar-layout", errMsg: "All fields must be filled"})
   //      }
+  console.log(cart);
   const order = {
     customerName: customerName,
     deliveryAddress: deliveryAddress,
     orderCode: "A" + parseInt(((Math.random() * 1000000) + 1)), //TODO: change this orderCode
-    orderItems: orderItems,
+    orderItems: cart,
     orderTotal: orderTotal,
-
     orderStatus: "Received",
     proofOfDelivery: "",
     driverEmailId: "",
