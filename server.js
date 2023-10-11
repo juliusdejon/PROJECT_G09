@@ -129,8 +129,7 @@ app.post("/orderStatus", (req, res) => {
   res.render("restaurant/orderStatus", { layout: "navbar-layout" });
 });
 
-app.get("/create-order", async (req, res) => {
-  const items = await Item.find().lean().exec();
+app.post("/create-order", async (req, res) => {
   console.log(items);
 
   // customerName:

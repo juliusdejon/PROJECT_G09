@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const subtotalElement = document.getElementById("subtotal");
   const totalElement = document.getElementById("total");
   const taxElement = document.getElementById("tax");
+  const totalInput = document.getElementById("orderTotal");
 
   const taxRate = 0.13;
   const serviceFee = 2;
@@ -50,4 +51,5 @@ document.addEventListener("DOMContentLoaded", () => {
     (subtotalValue + deliveryFee) *
     1.13
   ).toFixed(2)}`;
+  totalInput.value = ((subtotalValue + deliveryFee) * 1.13).toFixed(2);
 });
