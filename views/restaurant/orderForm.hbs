@@ -10,33 +10,36 @@
 
   <body>
     <div class="align-container">
-      <div class="item-container">
-        <h2>Order Summary</h2>
-        {{#each orderItems}}
+      <form action="/create-order" method="POST">
+        <div class="item-container">
+          <h2>Customer Information</h2>
+          <input type="text" name="customerName" />
+          <textarea name="deliveryAddress"></textarea>
+          <input type="text" name="orderTotal" id="orderTotal" />
+          <h2>Order Summary</h2>
+          {{#each orderItems}}
+            <div>
+              <p>{{name}}: ${{price}}</p>
+            </div>
+          {{/each}}
+          <h3>Order total</h3>
+          <p id="subtotal">Subtotal: ${{subtotal}}</p>
+          <p>Delivery Fee: $0.99</p>
+          <p id="tax"></p>
+          <hr />
+          <p>Add a tip</p>
           <div>
-            <p>{{name}}: ${{price}}</p>
+            <button class="tip-button" data-tip="0.15">15%</button>
+            <button class="tip-button" data-tip="0.18">18%</button>
+            <button class="tip-button" data-tip="0.20">20%</button>
+            <button class="tip-button" data-tip="0.25">25%</button>
           </div>
-        {{/each}}
-        <h3>Order total</h3>
-        <p id="subtotal">Subtotal: ${{subtotal}}</p>
-        <p>Delivery Fee: $0.99</p>
-        <p id="tax"></p>
-        <hr />
-        <p>Add a tip</p>
-        <div>
-          <button class="tip-button" data-tip="0.15">15%</button>
-          <button class="tip-button" data-tip="0.18">18%</button>
-          <button class="tip-button" data-tip="0.20">20%</button>
-          <button class="tip-button" data-tip="0.25">25%</button>
+          <hr />
+          <h2 id="total"></h2>
+          <button type="submit" id="place-order-button">Place order</button>
         </div>
-        <hr />
-        <h2 id="total"></h2>
-        <form action="/orderStatus" method="POST">
-          <button id="place-order-button">Place order</button>
-        </form>
-      </div>
+      </form>
     </div>
-
   </body>
 
 </html>

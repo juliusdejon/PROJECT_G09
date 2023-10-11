@@ -79,7 +79,6 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/create-item", async (req, res) => {
-
   const item = {
     name: "Peperoni pizza",
     image:
@@ -112,7 +111,7 @@ app.get("/remove-item/:itemId", async (req, res) => {
 });
 
 app.post("/orderForm", (req, res) => {
-  const orderItems = JSON.parse(req.body.items);
+  const orderItems = req.body.items ? JSON.parse(req.body.items) : [];
   let subtotal = 0;
 
   for (let i = 0; i < orderItems.length; i++) {
@@ -130,21 +129,16 @@ app.post("/orderStatus", async (req, res)=> {
   res.render("restaurant/orderStatus", {layout: "navbar-layout", errMsg: "Order status:"}); 
 });
 
-app.post("/orderStatusCheck", async (req, res) => {
-  const orderNum = req.body.orderId; 
-  try {
-    const orderId = await Order.findOne({orderCode: orderNum});
-    
-    if (orderId === null) {
-      res.render("restaurant/orderStatus", {layout: "navbar-layout", errMsg: "Order not found!"}); 
-    }
-  } catch (error) {
-    console.error(error); 
-  }
-})
 app.get("/create-order", async (req, res) => {
   const items = await Item.find().lean().exec();
   console.log(items);
+
+  // customerName:
+  // deliveryAddress:
+  // orderCode:
+  // orderTotal:
+  // orderStatus: 'Available For Delivery'
+
   const order = {
     customerName: "Eminem",
     deliveryAddress: "2 Three Winds Dr. North York, Toronto, ON",
@@ -240,13 +234,13 @@ app.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find().sort("-orderDate").lean().exec();
     const orderList = await getOrders(orders);
-    res.render("orders/orders", {
-      layout: "navbar-layout",
+    res.render("orders", {
+      layout: false,
       orders: orderList,
     });
   } catch (error) {
-    res.render("orders/orders", {
-      layout: "navbar-layout",
+    res.render("orders", {
+      layout: false,
       orders: [],
       errorMsg: `Error: Cannot list Orders at the moment - ${error}`,
     });
