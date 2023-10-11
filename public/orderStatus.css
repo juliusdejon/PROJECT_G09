@@ -10,8 +10,41 @@ body {
     background: #f6f7fb;
 }
 
+form {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 5%;
+}
+
+form > input {
+    width: 400px;
+    height: 50px;
+    padding-left: 15px;
+    border-radius: 10px;
+}
+
+#check-order-button {
+    width: 27%;
+    background-color: #79AC78; 
+    color: white; 
+    padding: 15px 0;
+    border-radius: 10px;
+    border: none;
+}
+
+#check-order-button:hover {
+    background-color: #618264;
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
 .align-container {
-    margin: 15% 0 0 25%;
+    margin: 5% 0 0 25%;
 }
 
 .container {

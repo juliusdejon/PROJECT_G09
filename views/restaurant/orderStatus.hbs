@@ -10,7 +10,16 @@
 </head>
 
 <body>
-    <div class="align-container">
+    <form action="/orderStatusCheck" method="POST">
+        <label for="orderNum">Type your order number</label>
+        <input type="text" name="orderId">
+        <button id="check-order-button" type="submit">CHECK ORDER</button>
+    </form>
+
+    {{#if errMsg}}
+    <h2 class="error-message">{{errMsg}}</h2>
+    {{else}}
+        <div class="align-container">
         <div class="text-container">
             <h3>Your order has been confirmed by the restaurant</h3>
         </div>
@@ -24,12 +33,11 @@
                     <span class="indicator"></span>
                 </div>
             </div>
-            {{!-- <div class="buttons">
-                <button id="prev" disabled>Prev</button>
-                <button id="next">Next</button>
-            </div> --}}
+   
         </div>
     </div>
+    {{/if}}
+
 </body>
 
 </html>

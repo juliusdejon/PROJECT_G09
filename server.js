@@ -126,10 +126,22 @@ app.post("/orderForm", (req, res) => {
   });
 });
 
-app.post("/orderStatus", (req, res)=> {
-  res.render("restaurant/orderStatus", {layout: "navbar-layout"}); 
+app.post("/orderStatus", async (req, res)=> {
+  res.render("restaurant/orderStatus", {layout: "navbar-layout", errMsg: "Order status:"}); 
 });
 
+app.post("/orderStatusCheck", async (req, res) => {
+  const orderNum = req.body.orderId; 
+  try {
+    const orderId = await Order.findOne({orderCode: orderNum});
+    
+    if (orderId === null) {
+      res.render("restaurant/orderStatus", {layout: "navbar-layout", errMsg: "Order not found!"}); 
+    }
+  } catch (error) {
+    console.error(error); 
+  }
+})
 app.get("/create-order", async (req, res) => {
   const items = await Item.find().lean().exec();
   console.log(items);
@@ -228,13 +240,13 @@ app.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find().sort("-orderDate").lean().exec();
     const orderList = await getOrders(orders);
-    res.render("orders", {
-      layout: false,
+    res.render("orders/orders", {
+      layout: "navbar-layout",
       orders: orderList,
     });
   } catch (error) {
-    res.render("orders", {
-      layout: false,
+    res.render("orders/orders", {
+      layout: "navbar-layout",
       orders: [],
       errorMsg: `Error: Cannot list Orders at the moment - ${error}`,
     });

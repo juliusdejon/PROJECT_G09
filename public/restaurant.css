@@ -55,6 +55,7 @@ body {
 #order-now-button {
     padding: 15px 30px;
     border-radius: 30px;
+    border: none;
 }
 
 .image-button {
