@@ -6,18 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/orderStatus.css">
+    <script src="/js/orderStatus.js" defer></script>
 </head>
 
 <body>
     <div class="container">
         <div class="steps">
-            <span class="circle">RECEIVED</span>
+            <span class="circle active">RECEIVED</span>
             <span class="circle">READY FOR DELIVERY</span>
             <span class="circle">IN TRANSIT</span>
             <span class="circle">DELIVERED</span>
-            <div class="progress">
+            <div class="progress-bar">
                 <span class="indicator"></span>
             </div>
+        </div>
+        <div class="buttons">
+            <button id="prev" disabled>Prev</button>
+            <button id="next">Next</button>
         </div>
     </div>
 </body>

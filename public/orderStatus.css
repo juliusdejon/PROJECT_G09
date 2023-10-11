@@ -45,3 +45,52 @@ body {
     transition: all 200ms ease;
     transition-delay: 0s;
 }
+
+.steps .circle.active {
+    transition-delay: 100ms;
+    border-color: #4070f4;
+    color: #4070f4;
+}
+
+.steps .progress-bar {
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #e0e0e0;
+    z-index: -1;
+}
+
+.progress-bar .indicator {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    background: #4070f4;
+    transition: all 300ms ease;
+}
+
+.container .buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.buttons button {
+    padding: 8px 25px;
+    background: #4070f4;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    transition: all 200ms linear;
+}
+
+.buttons button:active {
+    transform: scale(0.97);
+}
+
+.buttons button:disabled {
+    background: #87a5f8;
+    cursor: not-allowed;
+}
