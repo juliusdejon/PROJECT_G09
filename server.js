@@ -125,34 +125,34 @@ app.post("/orderForm", (req, res) => {
   });
 });
 
-app.post("/orderStatus", async (req, res)=> {
-  res.render("restaurant/orderStatus", {layout: "navbar-layout", errMsg: "Order status:"}); 
+app.post("/orderStatus", async (req, res) => {
+  res.render("restaurant/orderStatus", {
+    layout: "navbar-layout",
+    errMsg: "Order status:",
+  });
 });
 
-app.get("/create-order", async (req, res) => {
-  const items = await Item.find().lean().exec();
-  console.log(items);
-
-  // customerName:
-  // deliveryAddress:
-  // orderCode:
-  // orderTotal:
-  // orderStatus: 'Available For Delivery'
-
+app.post("/create-order", async (req, res) => {
+  console.log(req.body);
+  const customerName = req.body.customerName;
+  const deliveryAddress = req.body.deliveryAddress;
+  const orderTotal = req.body.orderTotal;
+  const orderItems = req.body.orderItems;
   const order = {
-    customerName: "Eminem",
-    deliveryAddress: "2 Three Winds Dr. North York, Toronto, ON",
-    orderCode: "M04",
-    orderItems: ["6521ea2032fb8c2dee0a3d54"],
-    orderTotal: 8.99,
-    orderStatus: "In Transit",
+    customerName: customerName,
+    deliveryAddress: deliveryAddress,
+    orderCode: Math.random(),
+    orderItems: orderItems,
+    orderTotal: orderTotal,
+
+    orderStatus: "Available For Delivery",
     proofOfDelivery: "",
-    driverEmailId: "harsh17",
+    driverEmailId: "",
   };
   try {
     const result = await new Order(order).save();
     console.log(result);
-    return res.send(result);
+    return res.redirect("/orders");
   } catch (err) {
     console.log(err);
     return res.send(err);
@@ -234,13 +234,13 @@ app.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find().sort("-orderDate").lean().exec();
     const orderList = await getOrders(orders);
-    res.render("orders", {
-      layout: false,
+    res.render("orders/orders", {
+      layout: "navbar-layout",
       orders: orderList,
     });
   } catch (error) {
-    res.render("orders", {
-      layout: false,
+    res.render("orders/orders", {
+      layout: "navbar-layout",
       orders: [],
       errorMsg: `Error: Cannot list Orders at the moment - ${error}`,
     });
@@ -257,13 +257,13 @@ app.post("/orders", async (req, res) => {
         .lean()
         .exec();
       const orderList = await getOrders(orders);
-      return res.render("orders", {
-        layout: false,
+      return res.render("orders/orders", {
+        layout: "navbar-layout",
         orders: orderList,
       });
     } catch (error) {
-      return res.render("orders", {
-        layout: false,
+      return res.render("orders/orders", {
+        layout: "navbar-layout",
         orders: [],
       });
     }
