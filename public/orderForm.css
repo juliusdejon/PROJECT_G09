@@ -39,6 +39,23 @@ body {
     color: white;
 }
 
+.item-container > input, textarea {
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;    
+}
+.item-container > input:focus, textarea:focus {
+    border: 3px solid #555;
+}
+
+
 #place-order-button {
     width: 100%;
     background-color: #79AC78; 
