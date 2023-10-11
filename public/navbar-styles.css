@@ -1,0 +1,19 @@
+.logo {
+  width: 140px;
+}
+header > nav {
+  background-color: #fff;
+  border-bottom: 1px solid #f4f4f4;
+  padding: 2px;
+}
+header > nav > ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  align-items: center;
+}
+
+header > nav > ul > li > a {
+  text-decoration: none;
+  color: #454545;
+}
