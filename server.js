@@ -127,10 +127,9 @@ app.post("/orderForm", (req, res) => {
   });
 });
 
-app.post("/orderStatus", async (req, res) => {
+app.get("/order-status", async (req, res) => {
   res.render("restaurant/orderStatus", {
     layout: "navbar-layout",
-    errMsg: "Order status:",
   });
 });
 

@@ -1,13 +1,11 @@
-* {
+body {
+    height: 100vh;
+    background: #f6f7fb;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
-}
-
-body {
-    height: 100vh;
-    background: #f6f7fb;
+    font-size: 14px;
 }
 
 form {
@@ -15,7 +13,7 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 form > input {
@@ -70,6 +68,7 @@ form > input {
 }
 
 .steps .circle {
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
