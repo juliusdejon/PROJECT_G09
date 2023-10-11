@@ -153,7 +153,7 @@ app.get("/remove-item/:itemId", async (req, res) => {
   }
 });
 
-app.post("/orderForm", async (req, res) => {
+app.post("/orderForm", (req, res) => {
   const orderItems = JSON.parse(req.body.items);
   let subtotal = 0;
 
@@ -166,6 +166,10 @@ app.post("/orderForm", async (req, res) => {
     orderItems: orderItems,
     subtotal: subtotal,
   });
+});
+
+app.post("/orderStatus", (req, res)=> {
+  res.render("orderStatus", {layout: false}); 
 });
 
 app.get("/create-order", async (req, res) => {
