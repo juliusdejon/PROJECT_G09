@@ -209,9 +209,9 @@ app.post("/create-order", async (req, res) => {
   }
 });
 
-app.get("/remove-order/:orderId", async (req, res) => {
+app.get("/remove-order/:orderCode", async (req, res) => {
   try {
-    const result = await Order.findOne({ _id: req.params.orderId });
+    const result = await Order.findOne({ orderCode: req.params.orderCode });
     if (result === null) {
       return res.send("Cannot find order with that id");
     }
@@ -282,7 +282,10 @@ const getOrders = async (orders) => {
 
 app.get("/orders", async (req, res) => {
   try {
-    const orders = await Order.find().sort("-orderDate").lean().exec();
+    const orders = await Order.find({ orderStatus: { $ne: "Received" } })
+      .sort("-orderDate")
+      .lean()
+      .exec();
     const activeOrders = await Order.find({ orderStatus: "Received" })
       .sort("-orderDate")
       .lean()
@@ -307,15 +310,26 @@ app.post("/orders", async (req, res) => {
   const customerName = req.body.customerName;
   if (customerName) {
     try {
-      const orders = await Order.find({ customerName })
+      const orders = await Order.find({
+        customerName,
+        orderStatus: { $ne: "Received" },
+      })
         .collation({ locale: "en", strength: 2 })
         .sort("-orderDate")
         .lean()
         .exec();
+
+      const activeOrders = await Order.find({ orderStatus: "Received" })
+        .sort("-orderDate")
+        .lean()
+        .exec();
+
       const orderList = await getOrders(orders);
+      const activeOrdersList = await getOrders(activeOrders);
       return res.render("orders/orders", {
         layout: "navbar-layout",
         orders: orderList,
+        activeOrders: activeOrdersList,
       });
     } catch (error) {
       return res.render("orders/orders", {

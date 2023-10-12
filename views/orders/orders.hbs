@@ -10,18 +10,7 @@
   </head>
   <body>
     <main>
-          <h2>Active Orders</h2>
-        <form action="/orders" method="post">
-          <input
-            class="input-search"
-            name="customerName"
-            type="text"
-            placeholder="Search"
-          />
-          <button class="btn-search" type="submit">
-            Search
-            </button>
-        </form>
+      <h2>Active Orders</h2>
       <section>
         <table>
           <th>Order Id</th>
@@ -31,7 +20,6 @@
           <th>Cost</th>
           <th>Date</th>
           <th>Status</th>
-          <th>Driver Details</th>
           <th>Action</th>
         {{#each activeOrders}}
           <tr>
@@ -49,14 +37,6 @@
               </span>
               {{#if this.proofOfDelivery}}
               <p>Proof of Delivery: {{this.proofOfDelivery}}</p>
-              {{/if}}
-            </td>
-            <td>
-              {{#if this.driverEmailId}}
-              <p>Name: {{this.driverName}}
-              <p>License Plate: {{this.driverLicensePlate}}</p>
-              {{else}}
-              <p>-</p>
               {{/if}}
             </td>
             <td>
@@ -82,7 +62,7 @@
         </table>
       </section>
 
-      <h2>Orders</h2>
+      <h2>Order History</h2>
         <form action="/orders" method="post">
           <input
             class="input-search"
@@ -90,6 +70,7 @@
             type="text"
             placeholder="Search"
           />
+          <input type="hidden" name="type" value="history" />
           <button class="btn-search" type="submit">
             Search
             </button>
