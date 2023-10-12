@@ -1,0 +1,38 @@
+{{!-- <form method="post" action="/register">
+    <label>Full Name</label><input name="fullname" type="text">
+    <label>Email-ID</label><input name="email" type="text">
+    <label>Password</label><input name="password" type="password">
+    <label>Vehicle-Model</label><input name="vehicleModel" type="text">
+    <label>Vehicle-color</label><input name="color" type="text">
+    <label>licence-PlateNumber</label><input name="numberplate">
+    <button type="submit">Login</button>
+</form>
+--}}
+
+
+<div class="register">
+    <div class="left-block">
+        <img src="images/register.jpg" alt="register-img">
+    </div>
+    <form method="post" action="/register">
+        <h1>Fill Out Form To Create Account</h1>
+        <hr>
+        <label>Full Name</label><input name="fullname" type="text" placeholder="Full Name">
+        <label>Email-ID</label><input name="email" type="text" placeholder="Email-Id">
+        <label>Password</label><input name="password" type="password" placeholder="Password">
+        <label>VEHICLE :</label><br>
+        <div class="vehicle">
+            <input name="vehicleModel" type="text" placeholder="Model">
+            <input name="color" type="text" placeholder="Color">
+        </div>
+
+
+        <label>LicencePlateNumber</label><input name="numberplate" placeholder="NumberPlateCode">
+        <button type="submit">Register</button>
+        <p>Already have an account <a href="/login">Login</a> here</p>
+        {{#if errorMsg}}
+        <br><p style="color: red;">{{errorMsg}}</p>
+        {{/if}}
+    </form>
+
+</div>

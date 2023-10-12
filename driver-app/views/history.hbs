@@ -1,0 +1,33 @@
+{{!-- {{OrdersHistory}} --}}
+<div class="OldOrderPage">
+    {{#if errorMsg}}
+    <p style="color:red;text-align:center">{{errorMsg}}</p>
+    {{/if}}
+    <div class="switchButton">
+        <a href="/available"><button>Available</button></a>
+        <a href="/picked"><button>Picked</button></a>
+        <a href="/orderhistory"><button class="active">OrderHistory</button></a>
+    </div>
+    {{#if result}}
+    {{#each result}}
+    <div class="orderblock">
+        <div class="oldorder-right-block">
+            <p style="font-weight: 600;">{{this.customerName}}</p>
+            <p>{{this.deliveryAddress}}</p>
+            <p style="color: green; font-weight:600; margin-top: 2vh">{{this.orderStatus}}</p>
+        </div>
+        <div class="oldorder-left-block">
+            <p style="text-align: center;margin-left:-1vw">${{this.orderTotal}}</p>
+            <a target="_blank" href="/proof/{{this.orderCode}}">Delivery Proof</a>
+
+        </div>
+
+    </div>
+    {{/each}}
+
+    {{else}}
+        <div class="empty">
+            <h2>Nothing to show!!</h2>
+        </div>
+    {{/if}}
+</div>
