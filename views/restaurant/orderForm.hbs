@@ -17,7 +17,7 @@
           <label for="customerName">Customer Name</label>
           <input type="text" name="customerName" />
           <label for="deliveryAddress">Delivery Address</label>
-          <textarea name="deliveryAddress"></textarea>   
+          <textarea name="deliveryAddress"></textarea>
           <input type="hidden" name="orderTotal" id="orderTotal" />
           <input type="hidden" name="orderItems" value={{{orderItemsSize}}} />
           <h2>Order Summary</h2>
@@ -33,10 +33,26 @@
           <hr />
           <p>Add a tip</p>
           <div>
-            <button class="tip-button" data-tip="0.15">15%</button>
-            <button class="tip-button" data-tip="0.18">18%</button>
-            <button class="tip-button" data-tip="0.20">20%</button>
-            <button class="tip-button" data-tip="0.25">25%</button>
+            <button
+              type="button"
+              class="tip-button"
+              data-tip="0.15"
+            >15%</button>
+            <button
+              type="button"
+              class="tip-button"
+              data-tip="0.18"
+            >18%</button>
+            <button
+              type="button"
+              class="tip-button"
+              data-tip="0.20"
+            >20%</button>
+            <button
+              type="button"
+              class="tip-button"
+              data-tip="0.25"
+            >25%</button>
           </div>
           <hr />
           <h2 id="total"></h2>
