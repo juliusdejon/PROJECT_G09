@@ -1,24 +1,17 @@
-const orderNowBtn = document.getElementById("order-now-button");
-
-const targetDiv = document.getElementsByClassName("menu-container");
-
-orderNowBtn.addEventListener("click", () => {
-  console.log("scrolling to menu");
-  targetDiv[0].scrollIntoView({ behavior: "smooth" });
-});
-
 document.addEventListener("DOMContentLoaded", () => {
+  const orderItems = [];
+
   const modalBtns = document.getElementsByClassName("image-button");
   const closeBtn = document.getElementsByClassName("closeBtn")[0];
   const modal = document.querySelector(".modal");
   const modalImage = modal.querySelector(".modal-item-image");
-  const modalName = modal.querySelector(".modal-name"); // Add this line
+  const modalName = modal.querySelector(".modal-name");
   const modalDescription = modal.querySelector(".modal-description");
   const modalPrice = modal.querySelector(".modal-price");
 
   const openModal = (imageUrl, name, description, price) => {
     modalImage.src = imageUrl;
-    modalName.textContent = `Name: ${name}`; // Set the text content for modal-name
+    modalName.textContent = `Name: ${name}`;
     modalDescription.textContent = `Description: ${description}`;
     modalPrice.textContent = `Price: ${price}`;
     modal.style.display = "block";
@@ -29,33 +22,33 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const updateBasketCount = () => {
-    document.querySelector(".basket-count").textContent = basketCount;
-    document.getElementById("orderItemsSize").value = basketCount;
+    document.querySelector(".basket-count").textContent = orderItems.length;
+    document.getElementById("orderItemsSize").value = orderItems.length;
   };
 
   const addItemToBasket = () => {
-    basketCount++;
+    const item = {
+      name: modalName.textContent.split(": ")[1],
+      price: modalPrice.textContent.split(": ")[1],
+    };
+    orderItems.push(item);
     updateBasketCount();
-    const itemName = modalName.textContent.split(": ")[1];
-    const itemPrice = modalPrice.textContent.split(": ")[1];
-    const itemDetails = { name: itemName, price: itemPrice };
-    updateOrderItems(itemDetails);
     closeModal();
+  };
+
+  const updateOrderItemsInput = () => {
+    const orderItemsInput = document.getElementById("orderItems");
+    orderItemsInput.value = JSON.stringify(orderItems);
+    console.log("test" + orderItems);
   };
 
   const updateOrderItems = (itemDetails) => {
     const orderItemsInput = document.getElementById("orderItems");
-    const currentItemsValue = orderItemsInput.value;
-    let currentItemsArray = [];
-    if (currentItemsValue !== "") {
-      currentItemsArray = JSON.parse(currentItemsValue);
-    }
+    let currentItemsArray = JSON.parse(orderItemsInput.value || '[]'); // Parse the existing value or initialize an empty array
     currentItemsArray.push(itemDetails);
     orderItemsInput.value = JSON.stringify(currentItemsArray);
   };
-
-  let basketCount = 0;
-
+  
   for (let i = 0; i < modalBtns.length; i++) {
     modalBtns[i].addEventListener("click", function () {
       const name = this.getAttribute("data-name");
@@ -70,7 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document
     .querySelector(".add-item-button")
-    .addEventListener("click", addItemToBasket);
+    .addEventListener("click", () => {
+      addItemToBasket();
+      updateOrderItemsInput();
+    });
 
   document.getElementById("shopping-basket").addEventListener("click", () => {
     document.getElementById("orderForm").submit();
