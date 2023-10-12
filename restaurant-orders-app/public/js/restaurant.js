@@ -1,3 +1,11 @@
+const orderNowBtn = document.getElementById("order-now-button");
+
+const targetDiv = document.getElementsByClassName("menu-container");
+
+orderNowBtn.addEventListener("click", () => {
+  targetDiv[0].scrollIntoView({ behavior: "smooth" });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const orderItems = [];
 
@@ -44,11 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateOrderItems = (itemDetails) => {
     const orderItemsInput = document.getElementById("orderItems");
-    let currentItemsArray = JSON.parse(orderItemsInput.value || '[]'); // Parse the existing value or initialize an empty array
+    let currentItemsArray = JSON.parse(orderItemsInput.value || "[]"); // Parse the existing value or initialize an empty array
     currentItemsArray.push(itemDetails);
     orderItemsInput.value = JSON.stringify(currentItemsArray);
   };
-  
+
   for (let i = 0; i < modalBtns.length; i++) {
     modalBtns[i].addEventListener("click", function () {
       const name = this.getAttribute("data-name");
@@ -61,12 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeBtn.addEventListener("click", closeModal);
 
-  document
-    .querySelector(".add-item-button")
-    .addEventListener("click", () => {
-      addItemToBasket();
-      updateOrderItemsInput();
-    });
+  document.querySelector(".add-item-button").addEventListener("click", () => {
+    addItemToBasket();
+    updateOrderItemsInput();
+  });
 
   document.getElementById("shopping-basket").addEventListener("click", () => {
     document.getElementById("orderForm").submit();
