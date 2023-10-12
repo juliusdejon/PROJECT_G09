@@ -1,59 +1,20 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   const tipButtons = document.querySelectorAll(".tip-button");
-//   const subtotalElement = document.getElementById("subtotal");
-//   const totalElement = document.getElementById("total");
-//   const taxElement = document.getElementById("tax");
-//   const totalInput = document.getElementById("orderTotal");
+document.addEventListener('DOMContentLoaded', function() {
+    let originalTotal = parseFloat(document.getElementById("total").innerHTML);
 
+    const calculateTotal = () => {
+        let tipPercentage = document.getElementById("tipPercentage").value;
 
-//   const taxRate = 0.13;
-//   const serviceFee = 2;
-//   let selectedTipPercentage = 0;
-//   let subtotalValue;
-//   let deliveryFee;
+        if (tipPercentage === "N/A") {
+            tipPercentage = 0;
+        }
 
-//   document.addEventListener("updateSubtotalAndDeliveryFee", () => {
-//     subtotalValue = parseFloat(
-//       subtotalElement.textContent.replace("Subtotal: $", "")
-//     );
-//     deliveryFee = 0.99;
-//   });
+        let tipCalculate = parseFloat(tipPercentage);
 
-//   document.dispatchEvent(new Event("updateSubtotalAndDeliveryFee"));
+        let newTotal = (originalTotal + (originalTotal * tipCalculate)).toFixed(2);
 
-//   tipButtons.forEach((button) => {
-//     button.addEventListener("click", () => {
-//       const isSelected = button.classList.contains("selected");
+        document.getElementById("total").innerHTML = newTotal;
+        document.querySelector('input[name="orderTotal"]').value = newTotal;
+    }
 
-//       tipButtons.forEach((btn) => btn.classList.remove("selected"));
-
-//       if (!isSelected) {
-//         button.classList.add("selected");
-//       }
-
-//       selectedTipPercentage = isSelected
-//         ? 0
-//         : parseFloat(button.getAttribute("data-tip"));
-   
-//       const tax = (subtotalValue + deliveryFee + serviceFee) * 0.13;
-//       const total =
-//         (subtotalValue + deliveryFee + tax) * (selectedTipPercentage + 1);
-
-//       totalElement.innerHTML = `Total: $${total.toFixed(2)}`;
-//       taxElement.innerHTML = `Taxes & Other Fees: $${tax.toFixed(2)}`;
-//     });
-//   });
-
-//   taxElement.innerHTML = `Taxes & Other Fees: $${(
-//     (subtotalValue + deliveryFee + serviceFee) *
-//     taxRate
-//   ).toFixed(2)}`;
-//   totalElement.innerHTML = `Total: $${(
-//     (subtotalValue + deliveryFee) *
-//     1.13
-//   ).toFixed(2)}`;
-
-
-//   totalInput.value = (((subtotalValue + deliveryFee) * 1.13) * (selectedTipPercentage + 1)).toFixed(2);
-  
-// });
+    document.getElementById("tipPercentage").addEventListener("change", calculateTotal);
+});

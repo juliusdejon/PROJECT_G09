@@ -115,15 +115,16 @@ app.post("/orderForm", (req, res) => {
   const orderItems = req.body.items ? JSON.parse(req.body.items) : [];
   const orderItemsSize = req.body.orderItemsSize;
   let subtotal = 0;
+
   const deliveryFee = 0.99;
   
   for (let i = 0; i < orderItems.length; i++) {
     subtotal += parseFloat(orderItems[i].price);
   }
 
-  const tax = ((subtotal + deliveryFee) * 0.13).toFixed(2); 
-  const total = parseFloat((subtotal + deliveryFee + tax)).toFixed(2);
-  
+  const tax = parseFloat(((subtotal + deliveryFee) * 0.13).toFixed(2)); 
+  const total = parseFloat((subtotal + tax + deliveryFee)).toFixed(2);
+ 
   cart = [];
   for (let i = 0; i < orderItems.length; i++) {
     cart.push(orderItems[i]);
@@ -186,7 +187,7 @@ app.post("/create-order", async (req, res) => {
   const customerName = req.body.customerName;
   const deliveryAddress = req.body.deliveryAddress;
   const orderTotal = req.body.orderTotal;
-
+  console.log("orderTotal" + orderTotal);
 
 
   // TODO: Add validation when empty

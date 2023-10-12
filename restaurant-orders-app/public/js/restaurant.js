@@ -42,13 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("test" + orderItems);
   };
 
-  const updateOrderItems = (itemDetails) => {
-    const orderItemsInput = document.getElementById("orderItems");
-    let currentItemsArray = JSON.parse(orderItemsInput.value || '[]'); // Parse the existing value or initialize an empty array
-    currentItemsArray.push(itemDetails);
-    orderItemsInput.value = JSON.stringify(currentItemsArray);
-  };
-  
   for (let i = 0; i < modalBtns.length; i++) {
     modalBtns[i].addEventListener("click", function () {
       const name = this.getAttribute("data-name");

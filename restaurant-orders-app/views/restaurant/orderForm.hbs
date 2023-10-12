@@ -30,41 +30,18 @@
           <h3>Order total</h3>
           <p id="subtotal">Subtotal: ${{subtotal}}</p>
           <p>Delivery Fee: ${{deliveryFee}}</p>
-          {{!-- <p>${{tax}}</p>
-          <hr /> --}}
-          {{!-- <p>Add a tip</p>
-          <div>
-            <button class="tip-button" data-tip="0.15">15%</button>
-            <button class="tip-button" data-tip="0.18">18%</button>
-            <button class="tip-button" data-tip="0.20">20%</button>
-            <button class="tip-button" data-tip="0.25">25%</button>
-          </div> --}}
-          <hr>
-          <h2>Total: {{total}}</h2>
-            <button
-              type="button"
-              class="tip-button"
-              data-tip="0.15"
-            >15%</button>
-            <button
-              type="button"
-              class="tip-button"
-              data-tip="0.18"
-            >18%</button>
-            <button
-              type="button"
-              class="tip-button"
-              data-tip="0.20"
-            >20%</button>
-            <button
-              type="button"
-              class="tip-button"
-              data-tip="0.25"
-            >25%</button>
-          </div>
+          <p>Tax: ${{tax}}</p>
           <hr />
-          <h2 id="total"></h2>
-
+          <p>Add a tip</p>
+          <select id="tipPercentage" onchange="calculateTotal()">
+            <option value="N/A">N/A</option>
+            <option value="0.15">15%</option>
+            <option value="0.18">18%</option>
+            <option value="0.20">20%</option>
+            <option value="0.25">25%</option>
+          </select>
+          <hr>
+          <h2>Total: $<span id="total">{{total}}</span></h2>
           <button type="submit" id="place-order-button">Place order</button>
         </div>
       </form>

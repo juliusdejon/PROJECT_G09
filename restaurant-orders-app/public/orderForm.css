@@ -17,7 +17,6 @@ body {
     border-radius: 30px;
 }
   
-
 .item-container {
     display: flex;
     flex-direction: column;
@@ -51,6 +50,7 @@ body {
     transition: 0.5s;
     outline: none;    
 }
+
 .item-container > input:focus, textarea:focus {
     border: 3px solid #555;
 }
