@@ -10,7 +10,7 @@
   </head>
   <body>
     <main>
-      <h2>Active Orders</h2>
+      <h2>Active Orders ({{activeOrders.length}})</h2>
       <section>
         <table>
           <th>Order Id</th>
@@ -62,7 +62,7 @@
         </table>
       </section>
 
-      <h2>Order History</h2>
+      <h2>Order History ({{orders.length}})</h2>
         <form action="/orders" method="post">
           <input
             class="input-search"
