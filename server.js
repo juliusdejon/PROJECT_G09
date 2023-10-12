@@ -124,6 +124,7 @@ app.post("/orderForm", (req, res) => {
   const tax = ((subtotal + deliveryFee) * 0.13).toFixed(2); 
   const total = parseFloat((subtotal + deliveryFee + tax)).toFixed(2);
   
+  cart = [];
   for (let i = 0; i < orderItems.length; i++) {
     cart.push(orderItems[i]);
   }
@@ -139,11 +140,45 @@ app.post("/orderForm", (req, res) => {
   });
 });
 
-app.post("/orderStatus", async (req, res) => {
+app.get("/order-receipt", (req, res)=>{
+  res.render("restaurant/orderReceipt", {
+    layout: "navbar-layout",
+    orderItems: cart
+  })
+});
+
+app.get("/order-status", async (req, res) => {
   res.render("restaurant/orderStatus", {
     layout: "navbar-layout",
-    errMsg: "Order status:",
   });
+});
+
+app.post("/order-status", async (req, res) => {
+  const orderId = req.body.orderId;
+  try {
+    const order = await Order.findOne({ orderCode: orderId });
+    console.log(order);
+    const isReceived = order.orderStatus === "Received";
+    const isAvailableForDelivery =
+      order.orderStatus === "Available For Delivery";
+    const isInTransit = order.orderStatus === "In Transit";
+    const isDelivered = order.orderStatus === "Delivered";
+
+    res.render("restaurant/orderStatus", {
+      layout: "navbar-layout",
+      order: order,
+      orderCode: order.orderCode,
+      isReceived,
+      isAvailableForDelivery,
+      isInTransit,
+      isDelivered,
+    });
+  } catch (error) {
+    res.render("restaurant/orderStatus", {
+      layout: "navbar-layout",
+      errMsg: "Order is not found. Please Input Again",
+    });
+  }
 });
 
 app.post("/create-order", async (req, res) => {
@@ -151,7 +186,7 @@ app.post("/create-order", async (req, res) => {
   const customerName = req.body.customerName;
   const deliveryAddress = req.body.deliveryAddress;
   const orderTotal = req.body.orderTotal;
-  const orderItems = req.body.orderItems; 
+
 
 
   // TODO: Add validation when empty
@@ -162,11 +197,12 @@ app.post("/create-order", async (req, res) => {
   //         console.log(orderItems);
   //         return res.render("restaurant/orderForm", {layout: "navbar-layout", errMsg: "All fields must be filled"})
   //      }
-  console.log(cart);
+  
+  const orderCode = "A" + parseInt(((Math.random() * 1000000) + 1));
   const order = {
     customerName: customerName,
     deliveryAddress: deliveryAddress,
-    orderCode: "A" + parseInt(((Math.random() * 1000000) + 1)), //TODO: change this orderCode
+    orderCode: orderCode, //TODO: change this orderCode
     orderItems: cart,
     orderTotal: orderTotal,
     orderStatus: "Received",
@@ -176,7 +212,12 @@ app.post("/create-order", async (req, res) => {
   try {
     const result = await new Order(order).save();
     console.log(result);
-    return res.redirect("/orders");
+    return  res.render("restaurant/orderReceipt", {
+      layout: "navbar-layout",
+      orderItems: cart,
+      orderCode: orderCode,
+      orderTotal: orderTotal
+    })
   } catch (err) {
     console.log(err);
     return res.send(err);

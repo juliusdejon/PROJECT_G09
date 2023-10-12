@@ -1,43 +1,44 @@
-<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/orderStatus.css">
+    <link rel="stylesheet" href="/orderStatus.css" />
     <script src="/js/orderStatus.js" defer></script>
-</head>
+  </head>
 
-<body>
-    <form action="/orderStatusCheck" method="POST">
-        <label for="orderNum">Type your order number</label>
-        <input type="text" name="orderId">
-        <button id="check-order-button" type="submit">CHECK ORDER</button>
+  <body>
+    <form action="/order-status" method="POST">
+      <h1>Order Status Form</h1>
+      <label for="orderNum">Type your order number</label>
+      <input type="text" name="orderId" />
+      <button id="check-order-button" type="submit">CHECK ORDER</button>
     </form>
 
     {{#if errMsg}}
-    <h2 class="error-message">{{errMsg}}</h2>
+      <h2 class="error-message">{{errMsg}}</h2>
     {{else}}
+      {{#if order}}
         <div class="align-container">
-        <div class="text-container">
+          <div class="text-container">
+            <h2>{{orderCode}}</h2>
             <h3>Your order has been confirmed by the restaurant</h3>
-        </div>
-        <div class="container">
+          </div>
+          <div class="container">
             <div class="steps">
-                <span class="circle active">RECEIVED</span>
-                <span class="circle">READY FOR DELIVERY</span>
-                <span class="circle">IN TRANSIT</span>
-                <span class="circle">DELIVERED</span>
-                <div class="progress-bar">
-                    <span class="indicator"></span>
-                </div>
+              <span class="circle {{#if isReceived}}active{{/if}}">RECEIVED</span>
+              <span class="circle {{#if isAvailableForDelivery}}active{{/if}}">READY FOR DELIVERY</span>
+              <span class="circle {{#if isInTransit}}active{{/if}}">IN TRANSIT</span>
+              <span class="circle {{#if isDelivered}}active{{/if}}">DELIVERED</span>
+              <div class="progress-bar">
+                <span class="indicator"></span>
+              </div>
             </div>
-   
+          </div>
         </div>
-    </div>
+      {{/if}}
     {{/if}}
 
-</body>
+  </body>
 
 </html>
