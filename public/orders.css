@@ -51,6 +51,7 @@ table {
   border-collapse: collapse;
 }
 tr {
+  height: 60px;
   border-bottom: 1px solid #EAEAEA;
 }
 
@@ -99,4 +100,9 @@ td {
 
 h2 {
   margin-top: 34px;
+}
+.proof-of-delivery {
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
 }

@@ -35,9 +35,6 @@
               <span>
                 {{this.orderStatus}}
               </span>
-              {{#if this.proofOfDelivery}}
-              <p>Proof of Delivery: {{this.proofOfDelivery}}</p>
-              {{/if}}
             </td>
             <td>
               <form action="/orders/update/{{this.orderCode}}/Available For Delivery" method="post">
@@ -85,7 +82,7 @@
           <th>Date</th>
           <th>Status</th>
           <th>Driver Details</th>
-          <th>Action</th>
+          <th>Proof of Delivery</th>
         {{#each orders}}
           <tr>
             <td>{{this.orderCode}}</td>
@@ -100,9 +97,6 @@
               <span>
                 {{this.orderStatus}}
               </span>
-              {{#if this.proofOfDelivery}}
-              <p>Proof of Delivery: {{this.proofOfDelivery}}</p>
-              {{/if}}
             </td>
             <td>
               {{#if this.driverEmailId}}
@@ -113,22 +107,11 @@
               {{/if}}
             </td>
             <td>
-              <form action="/orders/update/{{this.orderCode}}/Available For Delivery" method="post">
-              {{#if this.isReceived}}
-                <button
-                 class="btn-deliver"
-                 type="submit">
-                 Send to delivery
-                </button>
-              {{else}}
-                <button
-                  type="button"
-                 class="btn-deliver btn-deliver-disabled"
-                 >
-                 Send to delivery
-                </button>
+              {{#if this.proofOfDelivery}}
+              <a href="http://localhost:8081{{this.proofOfDelivery}}" target="_blank">
+              <img class="proof-of-delivery" src="http://localhost:8081{{this.proofOfDelivery}}" alt="img not found"></img>
+              </a>
               {{/if}}
-              </form>
             </td>
           </tr>
         {{/each}}

@@ -394,10 +394,6 @@ app.get("/orders/update/:orderCode/:status", async (req, res) => {
   }
 });
 
-/*
-  delivery endpoints
-*/
-
 const onHttpStart = () => {
   console.log(`Express web server running on port: ${HTTP_PORT}`);
   console.log(`Press CTRL+C to exit`);
