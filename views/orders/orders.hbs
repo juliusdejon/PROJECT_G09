@@ -10,7 +10,59 @@
   </head>
   <body>
     <main>
-      <h2>Orders</h2>
+      <h2>Active Orders ({{activeOrders.length}})</h2>
+      <section>
+        <table>
+          <th>Order Id</th>
+          <th>Customer</th>
+          <th>Address</th>
+          <th># of Items</th>
+          <th>Cost</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        {{#each activeOrders}}
+          <tr>
+            <td>{{this.orderCode}}</td>
+            <td>{{this.customerName}}</td>
+            <td>{{this.deliveryAddress}}</td>
+            <td>{{this.orderItems.length}}</td>
+            <td>${{this.orderTotal}}</td>
+            <td>{{this.orderDate}}</td>
+            <td><span class="span-status"
+               style="background: {{this.orderStatusColor}}">
+              </span>
+              <span>
+                {{this.orderStatus}}
+              </span>
+              {{#if this.proofOfDelivery}}
+              <p>Proof of Delivery: {{this.proofOfDelivery}}</p>
+              {{/if}}
+            </td>
+            <td>
+              <form action="/orders/update/{{this.orderCode}}/Available For Delivery" method="post">
+              {{#if this.isReceived}}
+                <button
+                 class="btn-deliver"
+                 type="submit">
+                 Send to delivery
+                </button>
+              {{else}}
+                <button
+                  type="button"
+                 class="btn-deliver btn-deliver-disabled"
+                 >
+                 Send to delivery
+                </button>
+              {{/if}}
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+        </table>
+      </section>
+
+      <h2>Order History ({{orders.length}})</h2>
         <form action="/orders" method="post">
           <input
             class="input-search"
@@ -18,6 +70,7 @@
             type="text"
             placeholder="Search"
           />
+          <input type="hidden" name="type" value="history" />
           <button class="btn-search" type="submit">
             Search
             </button>
