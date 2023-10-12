@@ -1,0 +1,34 @@
+{{!-- {{availableOrders}} --}}
+<div class="AvailableOrderPage">
+    {{#if errorMsg}}
+    <p style="color:red;text-align:center">{{errorMsg}}</p>
+    {{/if}}
+    <div class="switchButton">
+        <a href="/available"><button class="active">Available</button></a>
+        <a href="/picked"><button>Picked</button></a>
+        <a href="/orderhistory"><button>OrderHistory</button></a>
+    </div>
+    {{#if result}}
+    {{#each result}}
+    <div class="orderblock">
+        <div class="availability-right-block">
+            <p style="font-weight: 600;">{{this.customerName}}</p>
+            <p>{{this.deliveryAddress}}</p>
+            <p style="color: green; font-weight:600; margin-top: 2vh">{{this.orderStatus}}</p>
+        </div>
+        <div class="availability-left-block">
+            <p style="text-align: center;margin-left:-1vw">${{this.orderTotal}}</p>
+            <form action="/available/{{this.orderCode}}" method="post">
+                <button type="submit">Pick-Order</button>
+            </form>
+        </div>
+
+    </div>
+    {{/each}}
+
+    {{else}}
+    <div class="empty">
+        <h2>Nothing to show!!</h2>
+    </div>
+    {{/if}}
+</div>

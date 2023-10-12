@@ -1,11 +1,5 @@
-This was made for MADS4012 class
+cd driver-app
+node server.js
 
-# Installation
-
-`npm install`
-
-# Development
-
-`npx nodemon server.js`
-
-#
+cd restaurant-orders-app
+node server.js

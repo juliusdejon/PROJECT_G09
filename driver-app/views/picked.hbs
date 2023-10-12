@@ -1,0 +1,35 @@
+{{!-- {{PickedOrders}} --}}
+<div class="PickedOrderPage">
+    {{#if errorMsg}}
+    <p style="color:red;text-align:center">{{errorMsg}}</p>
+    {{/if}}
+    <div class="switchButton">
+        <a href="/available"><button>Available</button></a>
+        <a href="/picked"><button class="active">Picked</button></a>
+        <a href="/orderhistory"><button>OrderHistory</button></a>
+    </div>
+    {{#if result}}
+        {{#each result}}
+        <div class="orderblock">
+            <div class="picked-right-block">
+                <p style="font-weight: 600;">{{this.customerName}}</p>
+                <p>{{this.deliveryAddress}}</p>
+                <p style="color: green; font-weight:600; margin-top: 2vh">{{this.orderStatus}}</p>
+            </div>
+            <div class="picked-left-block">
+                <p style="text-align: center;">${{this.orderTotal}}</p>
+                <form action="/picked/{{this.orderCode}}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="proof" id="">
+                    <button type="submit">Deliver</button>
+                </form>
+            </div>
+
+        </div>
+        {{/each}}
+    {{else}}
+        <div class="empty">
+            <h2>Nothing to show!!</h2>
+        </div>
+    {{/if}}
+
+</div>
