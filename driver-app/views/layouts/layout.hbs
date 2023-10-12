@@ -1,43 +1,43 @@
-<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HJM Restaurant</title>
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="left-header">
-            <img src="../images/hjm-logo.png" alt="logo">
-            {{!-- <h1>HJM DRIVER APP</h1> --}}
-        </div>
-        {{#if loggedIn}}
+      <div class="left-header">
+        <a href="http://localhost:8080">
+          <img id="logo" src="../images/hjm-logo.png" alt="logo" />
+        </a>
+        {{! <h1>HJM DRIVER APP</h1> }}
+      </div>
+      {{#if loggedIn}}
         <div class="right-header">
-            <a href="/logout">Logout</a>
+          <a href="/logout">Logout</a>
         </div>
-        {{/if}}
+      {{/if}}
 
     </header>
     <main>
-        {{#if loggedIn}}
+      {{#if loggedIn}}
         <div class="headContent">
-            <h1>${{total}}</h1>
-            <p>Your Total Earnings</p>
-            <h2>Welcome {{name}}</h2>
+          <h1>${{total}}</h1>
+          <p>Your Total Earnings</p>
+          <h2>Welcome {{name}}</h2>
         </div>
-        {{/if}}
-        {{{body}}}
+      {{/if}}
+      {{{body}}}
     </main>
 
-
     <footer>
-        <img src="images/soup-bowl.png" alt="soup-bowl">
-        <h2>HJM DRIVER APP</h2>
-        <h2>© All Rights Resesrved</h2>
+      <img src="images/soup-bowl.png" alt="soup-bowl" />
+      <h2>HJM DRIVER APP</h2>
+      <h2>© All Rights Resesrved</h2>
     </footer>
-</body>
+  </body>
 
 </html>
